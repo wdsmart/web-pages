@@ -37,7 +37,7 @@ The best way to contact me is probably by <?php email('email'); ?>.  My office a
 		<dt><b>Phones:</b></dt>
 		<dd>
 			Phone: <a href="tel">+1 (541) 737-0670</a><br>
-			Fax: <a href="tel">+1 (541) 737-0670</a><br>
+			Fax: <a href="tel">+1 (541) 737-2600</a><br>
 		</dd>
 	</p>
 
