@@ -1,0 +1,4 @@
+AuthType Basic
+AuthName "Please enter password."
+AuthUserFile /home/smartw/.htpasswd
+require valid-user
