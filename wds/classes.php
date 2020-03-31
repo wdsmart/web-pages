@@ -3,7 +3,7 @@
 require_once('database.php');
 
 
-function list_classes($school, $area) {
+function list_classes($school, $area, $description='') {
   global $database;
 
   echo '<p>';
@@ -14,10 +14,10 @@ function list_classes($school, $area) {
     $result = $database->query('select * from wds_classes where school = "'.$school.'" and area = "'.$area.'" order by number');
 
   if (sizeof($result) > 0) {
+    echo '<h1>'.$description.'</h1>';
     foreach ($result as $class) {
       $course = new Course($class);
       $course->display();
-      echo $class['area'];
     }
   }
 }
@@ -98,13 +98,15 @@ class Course {
 
   public function display() {
     echo '<h2>'.stripslashes($this->data['name']).'</h2>';
-    echo stripslashes($this->data['informal']).' ';
+    if ($this->data['informal'])
+      echo stripslashes($this->data['informal']).' ';
     $this->display_deliveries();
       
     if ($this->data['link'] != '')
       echo ' <a target="_blank" href="'.$this->data['link'].'">[web page]</a>';
-      
-    echo '<p>From the course catalog:<br>'.stripslashes($this->data['formal']);
+    
+    if ($this->data['formal'])
+      echo '<p>From the course catalog:<br>'.stripslashes($this->data['formal']);
   }
 
   private function display_deliveries() {
