@@ -1,1 +1,3 @@
+# Allow files with .tex and .bib extensions to be served as PHP.
 AddType application/x-httpd-php .tex
+AddType application/x-httpd-php .bib
