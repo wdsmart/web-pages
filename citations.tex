@@ -1,0 +1,11 @@
+<?php
+
+// Force this to be a file.
+header('Content-Type: application/text');
+header('Content-disposition: attachment; filename="citations.tex"');
+
+require_once('wds/papers.php');
+
+list_bibtex_citations();
+
+?>
