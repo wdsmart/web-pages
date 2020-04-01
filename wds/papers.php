@@ -155,6 +155,43 @@ function list_papers_by_author($author, $list) {
   }
 }
 
+function list_bibtex_citations() {
+  global $database;
+
+  $venues = array(
+    'journal' => 'J',
+    'book' => 'B',
+    'chapter' => 'Ch',
+    'conference' => 'C',
+    'workshop' => 'W',
+    'abstract' => 'A',
+    'editor' => 'E',
+    'techreport' => 'TR',
+    'thesis' => 'T',
+    'other' => 'O',
+    'patent' => 'P'
+  );
+
+  foreach ($venues as $venue => $venue_tag) {
+    $result = $database->query('select tag from wds_papers where venue="'.$venue.'" order by year desc');
+
+    foreach ($result as $p) {
+      echo '\nocite'.$venue_tag.'{'.$p['tag'].'}'."\n";
+    }
+  }
+}
+
+function list_bibtex_entries() {
+  global $database;
+
+  $result = $database->query('select * from wds_papers');
+  foreach($result as $p) {
+    $paper = new Publication($p);
+    $paper->display_bibtex_entry(true);
+    echo "\n\n";
+  }
+}
+
 function display_paper_detail($tag) {
   global $database;
 
@@ -167,6 +204,10 @@ function display_paper_detail($tag) {
     $p->display(true);
   }
 }
+
+//======================
+//NEED TO IMPLEMENT THIS
+//======================
 
 // TODO:Need to actually implement this
 function delatex($text) {
@@ -247,35 +288,43 @@ class Publication {
     }
   }
 
-  public function display_bibtex_entry() {
+  public function display_bibtex_entry($generate_file = false) {
+    if ($generate_file) {
+      $line_break = "\n";
+      $space = '  ';
+    } else {
+      $line_break = '<br>';
+      $space = '&nbsp;&nbsp;';
+    }
+
     $fields = array('title', 'booktitle', 'journal', 'series', 'volume', 'number', 'chapter', 'edition', 'pages', 'publisher',
       'address', 'institution', 'organization', 'school', 'annote', 'crossref', 'howpublished', 'bibtex_key', 'type', 'note', 'month');
 
-    echo '@'.$this->data['class'].'{'.$this->data['tag'].',<br>';
+    echo '@'.$this->data['class'].'{'.$this->data['tag'].','.$line_break;
 
     // Authors and editors are a special case
     if (sizeof($this->authors) > 0) {
       $author_list = array();
       foreach ($this->authors as $author)
         $author_list[] = $author->bibtex_name(false);
-      echo '&nbsp;&nbsp;author = {'.join($author_list, ' and ').'},<br>';
+      echo $space.'author = {'.join($author_list, ' and ').'},'.$line_break;
     }
 
     if (sizeof($this->editors) > 0) {
       $editor_list = array();
       foreach ($this->editors as $editor)
         $editor_list[] = $editor->bibtex_name(false);
-     echo '&nbsp;&nbsp;editor = {'.join($editor_list, ' and ').'},<br>';
+     echo $space.'editor = {'.join($editor_list, ' and ').'},'.$line_break;
     }
 
     foreach($fields as $field) {
       if ($this->data[$field]) {
-        echo '&nbsp;&nbsp;'.$field.' = {'.$this->data[$field].'},<br>';
+        echo $space.$field.' = {'.$this->data[$field].'},'.$line_break;
       }
     }
 
     // Everyone has a year, so we can end with that
-    echo '&nbsp;&nbsp;year = {'.$this->year().'}<br>}';
+    echo $space.'year = {'.$this->year().'}'.$line_break.'}';
   }
 
   private function title() {
