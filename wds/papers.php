@@ -158,6 +158,8 @@ function list_papers_by_author($author, $list) {
 function list_bibtex_citations() {
   global $database;
 
+  echo '% Generated automatically on '.date('Y/m/d').' at '.date('h:y:sa')."\n\n";
+
   $venues = array(
     'journal' => 'J',
     'book' => 'B',
@@ -183,6 +185,8 @@ function list_bibtex_citations() {
 
 function list_bibtex_entries() {
   global $database;
+
+  echo '% Generated automatically on '.date('Y/m/d').' at '.date('h:y:sa')."\n\n";
 
   $result = $database->query('select * from wds_papers');
   foreach($result as $p) {
