@@ -71,27 +71,10 @@ function list_papers() {
 function list_papers_by_year($author, $earliest_year = 1990) {
   global $database;
 
-  // Papers in press
-  $result = array_merge(
-    $database->query('select * from wds_papers,wds_paper_authors where wds_paper_authors.author_id = '.$author.' and wds_paper_authors.paper_id = wds_papers.tag and wds_papers.disposition = "inpress"'),
-    $database->query('select * from wds_papers,wds_paper_editors where wds_paper_editors.editor_id = '.$author.' and wds_paper_editors.paper_id = wds_papers.tag and wds_papers.disposition = "inpress"')
-  );
-
-  if (sizeof($result) > 0) {
-    echo '<h2>In Press</h2>';
-
-    foreach ($result as $publication) {
-      $p = new Publication($publication);
-      $p->display(false);
-      echo '<p>';
-    }
-  }
-
-  // Now, the regular papers
   for($year = date('Y') + 1; $year >= $earliest_year; $year--) {
     $result = array_merge(
-      $database->query('select * from wds_papers,wds_paper_authors where year = '.$year.' and wds_paper_authors.author_id = '.$author.' and wds_paper_authors.paper_id = wds_papers.tag and wds_papers.disposition = "published"'),
-      $database->query('select * from wds_papers,wds_paper_editors where year = '.$year.' and wds_paper_editors.editor_id = '.$author.' and wds_paper_editors.paper_id = wds_papers.tag and wds_papers.disposition = "published"')
+      $database->query('select * from wds_papers,wds_paper_authors where year = '.$year.' and wds_paper_authors.author_id = '.$author.' and wds_paper_authors.paper_id = wds_papers.tag and (wds_papers.disposition = "published" or wds_papers.disposition = "inpress")'),
+      $database->query('select * from wds_papers,wds_paper_editors where year = '.$year.' and wds_paper_editors.editor_id = '.$author.' and wds_paper_editors.paper_id = wds_papers.tag and (wds_papers.disposition = "published" or wds_papers.disposition = "inpress")')
     );
 
     if (sizeof($result) > 0) {
@@ -124,9 +107,9 @@ function list_papers_by_type($author) {
 
   foreach($venues as $venue => $name) {
     if ($venue == 'editor')
-      $result = $database->query('select * from wds_papers,wds_paper_editors where venue = "'.$venue.'" and wds_paper_editors.editor_id = '.$author.' and wds_paper_editors.paper_id = wds_papers.tag and wds_papers.disposition = "published" order by year desc');
+      $result = $database->query('select * from wds_papers,wds_paper_editors where venue = "'.$venue.'" and wds_paper_editors.editor_id = '.$author.' and wds_paper_editors.paper_id = wds_papers.tag and (wds_papers.disposition = "published" or wds_papers.disposition = "inpress") order by year desc');
     else
-      $result = $database->query('select * from wds_papers,wds_paper_authors where venue = "'.$venue.'" and wds_paper_authors.author_id = '.$author.' and wds_paper_authors.paper_id = wds_papers.tag and wds_papers.disposition = "published" order by year desc');
+      $result = $database->query('select * from wds_papers,wds_paper_authors where venue = "'.$venue.'" and wds_paper_authors.author_id = '.$author.' and wds_paper_authors.paper_id = wds_papers.tag and (wds_papers.disposition = "published" or wds_papers.disposition = "inpress") order by year desc');
 
     if (sizeof($result) > 0) {
       echo '<h2>'.$name.'</h2>';
