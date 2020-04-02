@@ -210,13 +210,19 @@ function display_paper_detail($tag) {
   }
 }
 
-//======================
-//NEED TO IMPLEMENT THIS
-//======================
-
 // TODO:Need to actually implement this
 function delatex($text) {
-  return $text;
+  $replacements = array(
+  	'{' => '',
+  	'}' => '',
+  	'---' => '-',
+  	'--' => '-'
+  );
+
+  foreach ($replacements as $search => $replace)
+  	$text = str_replace($search, $replace, $text);
+
+  return $text;	
 }
 
 
@@ -244,16 +250,16 @@ class Publication {
     if ($detail) {
       echo '<h1>'.$this->title().'</h1>';
       if (sizeof($this->authors) > 0)
-        echo $this->author_list().'<br>';
+        echo $this->author_list().'.<br>';
       if (sizeof($this->editors) > 0)
-        echo $this->editor_list().' (eds)<br>';
+        echo $this->editor_list().' (eds).<br>';
 
       $this->display_bibtex_class(true);
 
       if ($this->data['month'])
         echo stripslashes($this->data['month']).' ';
     
-      echo $this->year().'<p>';
+      echo $this->year().'.<p>';
 
       if ($this->data['note'])
         echo '  '.delatex(stripslashes($this->data['note']));
@@ -284,7 +290,7 @@ class Publication {
     } else {
       echo '<a href="?display=detail&tag='.$this->data['tag'].'">'.$this->title().'</a><br>';
       if ($this->authors)
-        echo $this->author_list().'<br>';
+        echo $this->author_list().'.<br>';
       elseif ($this->editors)
         echo $this->editor_list().' (eds).<br>';
 
