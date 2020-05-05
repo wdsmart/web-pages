@@ -1,25 +1,44 @@
 The best way to contact me is probably by <?php email('email'); ?>.  My office and lab space are both in <a target="_blank" href="https://www.google.com/maps/place/Graf+Hall,+1680+SW+Monroe+Ave,+Corvallis,+OR+97331">Graf Hall</a>.  If I'm on campus, that's where I'm likely to be.
 
 
-<!--- Add support for two columns --->
+<!--- Add support for two columns, and for a scalable 4:3 aspect ration map. --->
 <style>
-  * {
-    box-sizing: border-box;
-  }
+	* {
+    	box-sizing: border-box;
+  	}
 
-  /* Create two equal columns that floats next to each other */
-  .column {
-    float: left;
-    width: 50%;
-    padding: 10px;
-  }
+	/* Create two equal columns that floats next to each other */
+  	.column {
+    	float: left;
+    	width: 50%;
+    	padding: 10px;
+  	}
 
-  /* Clear floats after the columns */
-  .row:after {
-    content: "";
-    display: table;
-	clear: both;
-  }
+  	/* Clear floats after the columns */
+  	.row:after {
+    	content: "";
+    	display: table;
+		clear: both;
+	}
+
+	/* A container for the map with a 4:3 aspect ratio */
+  	.map-container {
+		position: relative;
+	 	overflow: hidden;
+		width: 100%;
+	  	padding-top: 75%;
+	}
+
+	/* Then style the iframe to fit in the container div with full height and width */
+	.map-iframe {
+    	position: absolute;
+    	top: 0;
+    	left: 0;
+    	bottom: 0;
+  		right: 0;
+  		width: 100%;
+  		height: 100%;
+	}
 </style>
 
 
@@ -80,9 +99,11 @@ The best way to contact me is probably by <?php email('email'); ?>.  My office a
 	</div>
 
 	<div class="column">
-		<p>
-			<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2842.4352894591025!2d-123.27706714845014!3d44.567661578998056!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x54c040bdc4461ea9%3A0x981a3b57c9919466!2sGraf%20Hall%2C%201680%20SW%20Monroe%20Ave%2C%20Corvallis%2C%20OR%2097331!5e0!3m2!1sen!2sus!4v1588697863580!5m2!1sen!2sus" width="100%" height="200%" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
-		</p>
+		<div class="map-container">
+			<p>
+				<iframe class="map-iframe" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2842.4352894591025!2d-123.27706714845014!3d44.567661578998056!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x54c040bdc4461ea9%3A0x981a3b57c9919466!2sGraf%20Hall%2C%201680%20SW%20Monroe%20Ave%2C%20Corvallis%2C%20OR%2097331!5e0!3m2!1sen!2sus!4v1588697863580!5m2!1sen!2sus" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+			</p>
+		</div>
 	</div>
 </div>
 
