@@ -1,23 +1,25 @@
 The best way to contact me is probably by <?php email('email'); ?>.  My office and lab space are both in <a target="_blank" href="https://www.google.com/maps/place/Graf+Hall,+1680+SW+Monroe+Ave,+Corvallis,+OR+97331">Graf Hall</a>.  If I'm on campus, that's where I'm likely to be.
 
+
+<!--- Add support for two columns --->
 <style>
-* {
-  box-sizing: border-box;
-}
+  * {
+    box-sizing: border-box;
+  }
 
-/* Create two equal columns that floats next to each other */
-.column {
-  float: left;
-  width: 50%;
-  padding: 10px;
-}
+  /* Create two equal columns that floats next to each other */
+  .column {
+    float: left;
+    width: 50%;
+    padding: 10px;
+  }
 
-/* Clear floats after the columns */
-.row:after {
-  content: "";
-  display: table;
-  clear: both;
-}
+  /* Clear floats after the columns */
+  .row:after {
+    content: "";
+    display: table;
+	clear: both;
+  }
 </style>
 
 
@@ -27,7 +29,7 @@ The best way to contact me is probably by <?php email('email'); ?>.  My office a
 			<p>
 				<dt><b>Office:</b></dt>
 				<dd>
-					<a target="_blank" href=href="https://www.google.com/maps/place/Graf+Hall,+1680+SW+Monroe+Ave,+Corvallis,+OR+97331">316 Graf Hall</a>
+					<a target="_blank" href="https://www.google.com/maps/place/Graf+Hall,+1680+SW+Monroe+Ave,+Corvallis,+OR+97331">316 Graf Hall</a>
 				</dd>
 			</p>
 
