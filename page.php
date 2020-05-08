@@ -1,29 +1,28 @@
 <html>
 
 <?php
-	require_once('headers.php');
-	require_once('content.php');
+	$SEPARATOR = '=====';
 
 	// Information about the pages.
 	$page_names = array(
 		'index' => 'Bill Smart',
 
-		'==========',
+		$SEPARATOR,
 
 		'papers' => 'Publications',
 		'software' => 'Software',
 
-		'==========',
+		$SEPARATOR,
 
 		'students' => 'Students',
 		'group' => 'Research Group',
 		'press' => 'Press Coverage',
 
-		'==========',
+		$SEPARATOR,
 
 		'teaching' => 'Teaching',
 
-		'==========',
+		$SEPARATOR,
 
 		'contact' => 'Contact Information'
 	);
@@ -51,18 +50,40 @@
 
 
 	// Set the HTML headers for the page
-	html_header($page_title);
+	echo '<head><title>'.$page_title.'</title></head>';
 
 	// Page content
 	echo '<body>';
-	page_header($page_names[$page]);
-	echo '<p><table><tr><td valign="top">';
-	page_sidebar($page, $page_names, $sidebar_names);
-	echo '</td><td>&nbsp;&nbsp;&nbsp;&nbsp;</td><td valign="top">';
-	page_content($page);
-	echo '</td></tr></table><p>';
-	page_footer($page);
-	echo '</body';
+
+	// Page header
+	echo '<header><h1>'.$page_names[$page].'</h1></header>';
+
+	// Navigation sidebar
+	echo '<nav><section>';
+	foreach($page_names as $p => $name) {
+		// Is there a shorter sidebar name?
+		if (!$entry = $sidebar_names[$p])
+			$entry = $name;
+
+		if ($entry == $SEPARATOR)
+			echo '</section><section>';
+		else
+			echo '<a href="'.$p.'">'.strtolower($entry).'</a><br>';
+	}
+	echo '</section></nav>';
+
+	// Load the page content
+	echo '<article><main>';
+	require('content/'.$page.'.php');
+	echo '</main></article>';
+
+	// Set the footer
+	echo '<footer><address>Page written by ';
+	echo email('Bill Smart');
+	echo '.</address></footer>';
+
+	// End of page content
+	echo '</body>';
 ?>
 
 </html>
