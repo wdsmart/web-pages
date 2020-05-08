@@ -1,6 +1,6 @@
 <a style="position:absolute; right:10px; border:10px" href="library/images/wds.jpg"><img alt="My ugly mug" src="library/images/wds-small.jpg"></a>
 
-<h2 class="name">Bill Smart</h2>
+<h1 class="name">Bill Smart</h1>
 
 <div class="appointments">
 	<ul>

@@ -56,7 +56,7 @@
 	echo '<body>';
 
 	// Page header
-	echo '<header><h1>'.$page_names[$page].'</h1></header>';
+	echo '<header>'.$page_names[$page].'</header>';
 
 	// Navigation sidebar
 	echo '<nav><section>';
