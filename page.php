@@ -1,3 +1,5 @@
+<!doctype html>
+
 <html>
 
 <?php
@@ -50,7 +52,7 @@
 
 
 	// Set the HTML headers for the page
-	echo '<head><title>'.$page_title.'</title></head>';
+	echo '<head><title>'.$page_title.'</title><link rel="stylesheet" href="styles.css"></head>';
 
 	// Page content
 	echo '<body>';
