@@ -12,7 +12,7 @@
 
 <div class="titles">
 	<ul>
-		<li><b>Associate Director</b>, <a target="_blank" href="http://coris.oregonstate.edu">Collaborative Robotics and Intelligent Systems (CoRIS) Institute</a></li>
+		<li><b>Associate Director</b>, <a target="_blank" href="http://coris.oregonstate.edu">Collaborative Robotics and Intelligent Systems <abbr>(CoRIS)</abbr> Institute</a></li>
 	</ul>
 </div>
 
