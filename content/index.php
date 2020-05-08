@@ -13,6 +13,8 @@
 <div class="titles">
 	<ul>
 		<li><b>Associate Director</b>, <a target="_blank" href="http://coris.oregonstate.edu">Collaborative Robotics and Intelligent Systems <abbr>(CoRIS)</abbr> Institute</a></li>
+		<li><b>Science Communication Fellow</b>, <a target="_blank" href="https://omsi.edu/">Oregon Museum of Science and Industry <abbr>OMSI</abbr></a></li>
+		<li><b>Leshner Fellow</b>, <a target="_blank" href="https://leshnerfellows.aaas.org/">American Association for the Advancement of Science <abbr>(AAAS)</abbr></a></li>
 	</ul>
 </div>
 
