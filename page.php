@@ -59,9 +59,9 @@
 
 	// Page header
 	echo '<header>'.$page_names[$page].'</header>';
-
+	echo '<div class="row">';
 	// Navigation sidebar
-	echo '<nav><section>';
+	echo '<nav class="sidebar"><section>';
 	foreach($page_names as $p => $name) {
 		// Is there a shorter sidebar name?
 		if (!$entry = $sidebar_names[$p])
@@ -75,9 +75,11 @@
 	echo '</section></nav>';
 
 	// Load the page content
-	echo '<article><main>';
+	echo '<article class="column"><main>';
 	require('content/'.$page.'.php');
 	echo '</main></article>';
+
+	echo '</div>';
 
 	// Set the footer
 	echo '<footer><address>Page written by ';
