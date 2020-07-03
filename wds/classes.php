@@ -22,6 +22,37 @@ function list_classes($school, $area, $description='') {
   }
 }
 
+
+function list_teaching() {
+  global $database;
+
+  echo '% Generated automatically on '.date('Y/m/d').' at '.date('h:y:sa')."\n\n";
+
+  echo "\sectiontitle{Teaching}\n\n";
+
+  $schools = array(
+    'osu' => 'Oregon State University',
+    'wustl' => "Washington University in St. Louis"
+  );
+
+  foreach ($schools as $tag => $name) {
+    echo '\subsectiontitle{'.$name."}\n\n";
+    $result = $database->query('select * from wds_classes where school = "'.$tag.'" order by number');
+
+    if (sizeof($result) > 0) {
+      echo "\begin{enumerate}\n";
+      foreach ($result as $class) {
+        $course = new Course($class);
+        echo '\item ';
+        $course->display_latex();
+        echo "\n";
+      }
+      echo '\end{enumerate}'."\n\n";
+    }
+  }
+}
+
+
 // Todo encapsulate these data functions in the class
 // Building the all_classes set is needlessly exensive, since we're doing the same query a number of times.
 function teaching_report() {
@@ -107,6 +138,11 @@ class Course {
     
     if ($this->data['formal'])
       echo '<p>From the course catalog:<br>'.stripslashes($this->data['formal']);
+  }
+
+  public function display_latex() {
+    echo '\textbf{'.$this->data['name'].'.}  ';
+    $this->display_deliveries();
   }
 
   private function display_deliveries() {
