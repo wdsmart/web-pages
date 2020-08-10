@@ -20,8 +20,8 @@ DATABASE_DUMP_FILE = web-database.sql
 install: superclean links
 
 links:
-	for foo in $(SYMLINKS) ; do \
-		$(MAKE_LINK) page.php $$foo ; \
+	for link in $(SYMLINKS) ; do \
+		$(MAKE_LINK) page.php $$link ; \
 	done
 
 dump-database:
