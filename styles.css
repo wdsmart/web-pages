@@ -1,15 +1,37 @@
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+
+* {
+	font-family: 'Roboto';
+}
+
+/* General page layout */
 header {
 	text-align: right;
-	font-family: sans-serif;
+	font-family: 'Source Sans Pro', sans-serif;
 	font-weight: bold;
 	font-size: 300%;
+	padding-bottom: 1em;
 }
 
 footer {
 	text-align: right;
+	font-size: smaller;
+}
+
+footer:before {
+   	content: "";
+   	display: table;
+	clear: both;
+}
+
+address {
+	font-style: normal;
 }
 
 nav {
+	position: fixed;
+	top: 4em;
 	float: left;
 	width: 6em;
 	padding-top: 1em;
@@ -17,18 +39,30 @@ nav {
 }
 
 nav section {
-	font-family: sans-serif;
 	padding-bottom: 1em;
+}
+
+nav a {
+	font-family: 'Source Sans Pro', sans-serif;
+	font-size: larger;
+	text-decoration: none;
+	color: black;
 }
 
 article {
 	margin-left: 8em;
+	margin-right: 2em;
+}
+
+a {
+	text-decoration: none;
 }
 
 h1 {
-	font-family: sans-serif;
+	font-family: 'Source Sans Pro', sans-serif;
 }
 
+/* Index page */
 .headshot {
 	float: right;
 	left-margin: 3em;
@@ -37,6 +71,53 @@ h1 {
 .bio {
 	float: left;
 }
+
+.appointments {
+	margin-bottom: 1em
+}
+
+.appointments ul {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+
+.titles {
+	margin-bottom: 1em
+}
+
+.titles ul {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;	
+}
+
+
+/* Press coverage */
+.press ul {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+
+.press-piece cite {
+	float: left;
+	font-style: normal;
+}
+
+.press-piece .info {
+	width: 100%;
+	font-size: larger;
+}
+
+.press-piece .venue {
+	float: right;
+}
+
+
+
+
+
 
 .map-container {
 	position: relative;
@@ -53,10 +134,4 @@ h1 {
 	right: 0;
 	width: 100%;
 	height: 100%;
-}
-
-footer:before {
-   	content: "";
-   	display: table;
-	clear: both;
 }
